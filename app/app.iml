@@ -111,7 +111,6 @@
     <orderEntry type="library" exported="" name="butterknife-6.0.0" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_sms" level="project" />
     <orderEntry type="module" module-name="library" exported="" />
-    <orderEntry type="module" module-name="virustotal" exported="" />
   </component>
 </module>
 

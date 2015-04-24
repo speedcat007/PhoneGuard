@@ -33,7 +33,6 @@ import com.kanishka.virustotalv2.VirusTotalConfig;
 import com.kanishka.virustotalv2.VirustotalPublicV2;
 import com.kanishka.virustotalv2.VirustotalPublicV2Impl;
 import com.xp.utils.FileMD5;
-import com.xp.virustotal.ApiDetails;
 import com.yzy.supercleanmaster.R;
 import com.yzy.supercleanmaster.adapter.SoftwareAdapter;
 import com.yzy.supercleanmaster.adapter.TextAdapter;
@@ -382,7 +381,6 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
     }
     public void URLScan(){
         new AsyncTask<Void, Integer, FileScanReport[]>(){
-
             @Override
             protected FileScanReport[] doInBackground(Void... params) {
                 FileScanReport[] reports = null;
@@ -390,7 +388,7 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
 //                String text = "www.baidu,com";
                 String urls[] = {text};
                 try {
-                    VirusTotalConfig.getConfigInstance().setVirusTotalAPIKey(ApiDetails.API_KEY);
+                    VirusTotalConfig.getConfigInstance().setVirusTotalAPIKey("9f4bb3d92809cd86871c38ccd4711f2401545a109b8c673685acf00e6a291974");
                     VirustotalPublicV2 virusTotalRef = new VirustotalPublicV2Impl();
                     reports = virusTotalRef.getUrlScanReport(urls, false);
                     L.d("=================结束=======================");
