@@ -1,0 +1,190 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gray_drawable"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dip"
+            android:layout_centerHorizontal="true">
+
+            <com.yzy.supercleanmaster.widget.circleprogress.ArcProgress
+                android:id="@+id/arc_scan"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                custom:arc_bottom_text="扫描中"
+                custom:arc_bottom_text_size="18dip"
+                custom:arc_progress="10"
+                custom:arc_stroke_width="8dip"
+                custom:arc_text_color="#ffffff"
+                custom:arc_text_size="32dip" />
+
+            <TextView
+                android:id="@+id/progress"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="12dip"
+                android:text="20/30"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="55dip" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#3762ad">
+
+            <TextView
+                android:id="@+id/scan_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:layout_marginLeft="5dip"
+                android:textColor="#e2e2e2"
+                android:text="com.xp.securityguard" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_normal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/l_file_scan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <EditText
+                            android:id="@+id/edit_file"
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="3"
+                            android:background="@drawable/card_background"
+                            android:textSize="@dimen/text_size_large"
+                            android:padding="16dp" />
+                        <Button
+                            android:id="@+id/btn_file"
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/card_background"
+                            android:textSize="@dimen/text_size_large"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:text="扫描"
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/scan_file"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/card_background"
+                        android:textSize="@dimen/text_size_large"
+                        android:padding="16dp"
+                        android:text="扫描文件"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/l_url_scan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <EditText
+                            android:id="@+id/edit_url"
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="3"
+                            android:background="@drawable/card_background"
+                            android:textSize="@dimen/text_size_large"
+                            android:padding="16dp" />
+                        <Button
+                            android:id="@+id/btn_url"
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/card_background"
+                            android:textSize="@dimen/text_size_large"
+                            android:padding="16dp"
+                            android:gravity="center"
+                            android:text="扫描"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/scan_url"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/card_background"
+                        android:textSize="@dimen/text_size_large"
+                        android:padding="16dp"
+                        android:text="扫描URL"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.yzy.supercleanmaster.views.SlidingLayer
+        android:id="@+id/slidingLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        custom:stickTo="bottom"
+        custom:changeStateOnTap="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f6f6f6"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/topText"
+                android:textColor="#787878"
+                android:text="以下是此次查杀发现的病毒"
+                android:layout_marginTop="@dimen/margin_right"
+                android:layout_marginBottom="@dimen/margin_right"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginRight="@dimen/margin_right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fastScrollEnabled="true"
+                android:focusable="true"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none"
+                android:clipToPadding="false"
+                android:divider="@null"
+                android:dividerHeight="4dp"
+                android:fadingEdge="none"
+                android:fitsSystemWindows="true"
+                android:padding="12dp"
+                android:scrollbarStyle="outsideOverlay"
+                tools:ignore="overdraw" />
+        </LinearLayout>
+
+    </com.yzy.supercleanmaster.views.SlidingLayer>
+
+</RelativeLayout>

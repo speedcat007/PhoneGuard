@@ -1,0 +1,183 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:background="@color/title_bg"
+            android:orientation="vertical">
+
+            <com.yzy.supercleanmaster.views.WaterWaveView
+                android:id="@+id/wave_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp" >
+
+                <TextView
+                    android:id="@+id/month_used"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/line"
+                    android:gravity="center"
+                    android:text="本月已用：0MB"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/today_used"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_toLeftOf="@+id/line"
+                    android:text="今日已用：0MB"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <ListView
+            android:layout_below="@+id/header"
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:focusable="true"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            android:background="#e2e2e2"
+            android:clipToPadding="false"
+            android:divider="@null"
+            android:dividerHeight="4dp"
+            android:fadingEdge="none"
+            android:fitsSystemWindows="true"
+            android:padding="12dp"
+            android:scrollbarStyle="outsideOverlay"
+            tools:ignore="overdraw" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:id="@+id/bottom_lin"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_set"
+                android:layout_margin="8dip"
+                android:background="@drawable/btn_normal_green"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:text="设置"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:indeterminate="true"
+            app:cpb_colors="@array/gplus_colors" />
+
+    </LinearLayout>
+    <com.yzy.supercleanmaster.views.SlidingLayer
+        android:id="@+id/slidingLayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/title_bg"
+            android:padding="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_background_white"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/edit_traffic"
+                    android:layout_width="0dip"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="10dp"
+                    android:numeric="integer"
+                    android:text=""/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/title_bg" />
+                <Button
+                    android:id="@+id/btn_switch"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:text="MB"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_background_white"
+                    android:layout_marginRight="16dp"
+                    android:padding="16dp"
+                    android:text="确定"/>
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_background_white"
+                    android:layout_marginLeft="16dp"
+                    android:padding="16dp"
+                    android:text="取消"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.yzy.supercleanmaster.views.SlidingLayer>
+</FrameLayout>
