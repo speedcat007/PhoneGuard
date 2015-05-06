@@ -94,6 +94,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/MyTranslucentAppTheme" />
         <activity
+            android:name=".ui.FileChooserActivity"
+            android:label="@string/file_chooser"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme" />
+        <activity
             android:name=".base.FragmentContainerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyTranslucentAppTheme" />

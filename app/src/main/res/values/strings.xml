@@ -15,6 +15,7 @@
     <string name="app_software_manage">软件管理</string>
     <string name="app_flow_manage">流量监测</string>
     <string name="app_virus_kill">病毒查杀</string>
+    <string name="file_chooser">文件选择</string>
     <string name="cleaned">清理垃圾 (<xliff:g id="memory">%1$s</xliff:g>)</string>
     <string name="empty_cache">缓存为空.</string>
     <string name="scanning">扫描中…</string>

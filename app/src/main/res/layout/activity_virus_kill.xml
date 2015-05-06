@@ -145,7 +145,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@id/topText"
+                android:id="@+id/topText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_right"
@@ -156,7 +156,7 @@
                 android:textColor="#ff787878" />
 
             <ListView
-                android:id="@id/listview"
+                android:id="@+id/listview"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:clipToPadding="false"
