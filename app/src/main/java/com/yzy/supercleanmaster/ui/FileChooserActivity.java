@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -141,26 +142,22 @@ public class FileChooserActivity extends BaseSwipeBackActivity implements Adapte
         }
     }
 
-
-
-
-//    public boolean onOptionsItemSelected(MenuItem paramMenuItem)
-//    {
-//        if (paramMenuItem.getItemId() == 16908332)
-//        {
-//            finish();
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(paramMenuItem);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FileInfo fileInfo = ((FileChooserAdapter)parent.getAdapter()).getItem(position);
         Intent intent = new Intent();
-        intent.putExtra("file_name", fileInfo.getFileName());
-        intent.putExtra("file_path", fileInfo.getFilePath());
-        this.setResult(-1, intent);
+        intent.putExtra(EXTRA_FILE_NAME, fileInfo.getFileName());
+        intent.putExtra(EXTRA_FILE_PATH, fileInfo.getFilePath());
+        this.setResult(RESULT_OK, intent);
         finish();
     }
 }

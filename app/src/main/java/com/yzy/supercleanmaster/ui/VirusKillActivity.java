@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,6 +32,7 @@ import com.yzy.supercleanmaster.adapter.TextAdapter;
 import com.yzy.supercleanmaster.base.BaseSwipeBackActivity;
 import com.yzy.supercleanmaster.model.AppInfo;
 import com.yzy.supercleanmaster.utils.AntiVirusDao;
+import com.yzy.supercleanmaster.utils.L;
 import com.yzy.supercleanmaster.utils.Md5Encoder;
 import com.yzy.supercleanmaster.utils.T;
 import com.yzy.supercleanmaster.views.SlidingLayer;
@@ -127,6 +129,7 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
         textAdapter = new TextAdapter(mContext, textList);
         listview.setAdapter(VirusAppAdapter);
         dao = new AntiVirusDao(this);
+        virusScan();
         slidingLayer.setSlidingEnabled(false);
     }
 
@@ -176,7 +179,7 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
                     arcScan.setProgress((int) progress);
                     mProgressBarText.setText(getString(R.string.scanning_m_of_n, values[0], values[1]));
                 } catch (Exception e) {
-
+                    L.e(e.getMessage());
                 }
             }
 
@@ -186,7 +189,7 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
                     arcScan.setProgress(0);
                     mProgressBarText.setText(R.string.scanning);
                 } catch (Exception e) {
-
+                    L.e(e.getMessage());
                 }
                 super.onPreExecute();
             }
@@ -412,24 +415,39 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            if (slidingLayer.isOpened())
+            {
+                setTitle("病毒查杀");
+                slidingLayer.closeLayer(true);
+                return true;
+            }
+            else
+            {
+                finish();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
+            if (slidingLayer.isOpened())
+            {
+                setTitle("病毒查杀");
+                this.slidingLayer.closeLayer(true);
+                return true;
+            }
+            else
+            {
+                finish();
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
-
-    //    private void showFileChooser() {
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("*/*");
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
-//
-//        try {
-//            startActivityForResult(Intent.createChooser(intent, "Select a File to Upload"), 1);
-//        } catch (ActivityNotFoundException ex) {
-//            Toast.makeText(this, "Please install a File Manager.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
 }
