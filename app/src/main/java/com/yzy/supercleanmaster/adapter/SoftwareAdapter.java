@@ -21,13 +21,13 @@ import java.util.List;
 public class SoftwareAdapter extends BaseAdapter {
 
     public List<AppInfo> mlistAppInfo;
-    LayoutInflater infater = null;
+    LayoutInflater inflater = null;
     private Context mContext;
     public static List<Integer> clearIds;
 
 
     public SoftwareAdapter(Context context, List<AppInfo> apps) {
-        infater = LayoutInflater.from(context);
+        inflater = LayoutInflater.from(context);
         mContext = context;
         clearIds = new ArrayList<Integer>();
         this.mlistAppInfo = apps;
@@ -36,19 +36,16 @@ public class SoftwareAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return mlistAppInfo.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return mlistAppInfo.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
@@ -56,8 +53,7 @@ public class SoftwareAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (convertView == null) {
-            convertView = infater.inflate(R.layout.listview_software,
-                    null);
+            convertView = inflater.inflate(R.layout.listview_software, null);
             holder = new ViewHolder();
             holder.appIcon = (ImageView) convertView
                     .findViewById(R.id.app_icon);

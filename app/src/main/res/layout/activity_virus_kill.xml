@@ -1,190 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/gray_drawable"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="200dip"
+            android:layout_height="200.0dip"
             android:layout_centerHorizontal="true">
 
             <com.yzy.supercleanmaster.widget.circleprogress.ArcProgress
                 android:id="@+id/arc_scan"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="180.0dip"
+                android:layout_height="180.0dip"
                 custom:arc_bottom_text="扫描中"
-                custom:arc_bottom_text_size="18dip"
+                custom:arc_bottom_text_size="18.0dip"
                 custom:arc_progress="10"
-                custom:arc_stroke_width="8dip"
-                custom:arc_text_color="#ffffff"
-                custom:arc_text_size="32dip" />
+                custom:arc_stroke_width="8.0dip"
+                custom:arc_text_color="#ffffffff"
+                custom:arc_text_size="32.0dip" />
 
             <TextView
                 android:id="@+id/progress"
-                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="12dip"
-                android:text="20/30"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="55dip" />
-
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="55.0dip"
+                android:text="20/30"
+                android:textColor="@color/white"
+                android:textSize="12.0dip" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#3762ad">
+            android:background="#ff3762ad">
 
             <TextView
                 android:id="@+id/scan_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:layout_marginLeft="5dip"
-                android:textColor="#e2e2e2"
-                android:text="com.xp.securityguard" />
+                android:layout_marginLeft="5.0dip"
+                android:padding="5.0dip"
+                android:text="com.xp.securityguard"
+                android:textColor="#ffe2e2e2" />
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/card_normal">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/card_normal"
+            android:paddingTop="2.0dip">
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/l_file_scan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-                        <EditText
-                            android:id="@+id/edit_file"
-                            android:layout_height="wrap_content"
-                            android:layout_width="0dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/card_background"
-                            android:textSize="@dimen/text_size_large"
-                            android:padding="16dp" />
-                        <Button
-                            android:id="@+id/btn_file"
-                            android:layout_height="wrap_content"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/card_background"
-                            android:textSize="@dimen/text_size_large"
-                            android:padding="16dp"
-                            android:gravity="center"
-                            android:text="扫描"
-                            />
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_background">
 
-                    <TextView
-                        android:id="@+id/scan_file"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/card_background"
-                        android:textSize="@dimen/text_size_large"
-                        android:padding="16dp"
-                        android:text="扫描文件"/>
+                    <EditText
+                        android:id="@+id/file_edit"
+                        android:layout_width="0.0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="2.0"
+                        android:background="@null"
+                        android:editable="false"
+                        android:ellipsize="end"
+                        android:hint="选择你要扫描的APK或ZIP文件"
+                        android:padding="16.0dip"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_size_middle" />
 
-                </RelativeLayout>
+                    <Button
+                        android:id="@+id/file_btn"
+                        android:layout_width="0.0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:background="@color/green_6a"
+                        android:gravity="center"
+                        android:padding="16.0dip"
+                        android:text="文件扫描"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_middle" />
+                </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/l_url_scan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-                        <EditText
-                            android:id="@+id/edit_url"
-                            android:layout_height="wrap_content"
-                            android:layout_width="0dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/card_background"
-                            android:textSize="@dimen/text_size_large"
-                            android:padding="16dp" />
-                        <Button
-                            android:id="@+id/btn_url"
-                            android:layout_height="wrap_content"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/card_background"
-                            android:textSize="@dimen/text_size_large"
-                            android:padding="16dp"
-                            android:gravity="center"
-                            android:text="扫描"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_background">
 
-                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/url_edit"
+                        android:layout_width="0.0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="2.0"
+                        android:background="@null"
+                        android:hint="输入你要扫描的网址 "
+                        android:imeOptions="actionDone"
+                        android:padding="16.0dip"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_size_middle" />
 
-                    <TextView
-                        android:id="@+id/scan_url"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/card_background"
-                        android:textSize="@dimen/text_size_large"
-                        android:padding="16dp"
-                        android:text="扫描URL"/>
-                </RelativeLayout>
+                    <Button
+                        android:id="@+id/url_btn"
+                        android:layout_width="0.0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1.0"
+                        android:background="@color/green_6a"
+                        android:gravity="center"
+                        android:padding="16.0dip"
+                        android:text="URL扫描"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_middle" />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-
     </LinearLayout>
 
     <com.yzy.supercleanmaster.views.SlidingLayer
         android:id="@+id/slidingLayer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        custom:stickTo="bottom"
-        custom:changeStateOnTap="false">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        custom:changeStateOnTap="false"
+        custom:stickTo="bottom">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#f6f6f6"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff6f6f6"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/topText"
-                android:textColor="#787878"
-                android:text="以下是此次查杀发现的病毒"
-                android:layout_marginTop="@dimen/margin_right"
+                android:id="@id/topText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_right"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_marginTop="@dimen/margin_right"
+                android:text="以下是此次查杀发现的病毒"
+                android:textColor="#ff787878" />
+
             <ListView
-                android:id="@+id/listview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fastScrollEnabled="true"
-                android:focusable="true"
-                android:listSelector="@android:color/transparent"
-                android:scrollbars="none"
+                android:id="@id/listview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:clipToPadding="false"
                 android:divider="@null"
-                android:dividerHeight="4dp"
+                android:dividerHeight="4.0dip"
                 android:fadingEdge="none"
+                android:fastScrollEnabled="true"
                 android:fitsSystemWindows="true"
-                android:padding="12dp"
+                android:focusable="true"
+                android:listSelector="@android:color/transparent"
+                android:padding="12.0dip"
                 android:scrollbarStyle="outsideOverlay"
-                tools:ignore="overdraw" />
+                android:scrollbars="none" />
         </LinearLayout>
-
     </com.yzy.supercleanmaster.views.SlidingLayer>
-
 </RelativeLayout>
