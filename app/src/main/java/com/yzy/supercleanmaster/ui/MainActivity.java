@@ -20,6 +20,7 @@ import com.yzy.supercleanmaster.R;
 import com.yzy.supercleanmaster.base.ActivityTack;
 import com.yzy.supercleanmaster.base.BaseActivity;
 import com.yzy.supercleanmaster.fragment.MainFragment;
+import com.yzy.supercleanmaster.fragment.MoreFragment;
 import com.yzy.supercleanmaster.fragment.NavigationDrawerFragment;
 import com.yzy.supercleanmaster.fragment.SettingsFragment;
 import com.yzy.supercleanmaster.utils.SystemBarTintManager;
@@ -51,7 +52,8 @@ public class MainActivity extends BaseActivity implements NavigationDrawerFragme
     private View mFragmentContainerView;
     /*左侧菜单*/
     MainFragment mMainFragment;
-//    RelaxFragment mRelaxFragment;
+    MoreFragment mMoreFragment;
+    //    RelaxFragment mRelaxFragment;
     public static final long TWO_SECOND = 2 * 1000;
     long preTime;
     @Override
@@ -201,8 +203,16 @@ public class MainActivity extends BaseActivity implements NavigationDrawerFragme
                 SettingsFragment.launch(MainActivity.this);
                 break;
 
-            // fragment = new SettingsFragment();
-            // break;
+            case 2:
+                closeDrawer();
+                if (mMoreFragment == null) {
+                    mMoreFragment = new MoreFragment();
+                    transaction.add(R.id.container, mMoreFragment);
+                } else {
+                    transaction.show(mMoreFragment);
+                }
+                transaction.commit();
+                break;
         }
 
 
