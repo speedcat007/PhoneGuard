@@ -1,11 +1,15 @@
 package com.yzy.supercleanmaster.fragment;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.yzy.supercleanmaster.R;
@@ -42,8 +46,16 @@ public class MoreFragment extends BaseFragment {
 
 
     @OnClick(R.id.card1)
-    void simNumberChanger() {
-
+    void adBlock() {
+        ComponentName componetName = new ComponentName("tw.fatminmin.xposed.minminguard", "tw.fatminmin.xposed.minminguard.ui.Settings");
+        try {
+            Intent intent = new Intent();
+            intent.setComponent(componetName);
+            intent.setData(Uri.parse("com.android.example://AuthActivity"));
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(mContext, "可以在这里提示用户没有找到应用程序，或者是做其他的操作！", Toast.LENGTH_LONG).show();
+        }
     }
 
 
