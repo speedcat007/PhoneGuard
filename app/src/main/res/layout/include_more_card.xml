@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 card:card_image="@drawable/card_icon_speedup"
-                card:card_name="广告拦截" />
+                card:card_name="显示WIFI密码" />
         </RelativeLayout>
 
         <View
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 card:card_image="@drawable/card_icon_trash"
-                card:card_name="权限管理" />
+                card:card_name="通知计数" />
         </RelativeLayout>
 
         <View
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 card:card_image="@drawable/card_icon_speedup"
-                card:card_name="SIM号码修改" />
+                card:card_name="Toast" />
         </RelativeLayout>
 
         <View
@@ -95,6 +95,7 @@
             android:background="#19000000" />
 
         <RelativeLayout
+            android:visibility="invisible"
             android:id="@+id/card5"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
@@ -114,6 +115,7 @@
             android:background="#19000000" />
 
         <RelativeLayout
+            android:visibility="invisible"
             android:id="@+id/card6"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
@@ -131,4 +133,6 @@
         android:layout_width="fill_parent"
         android:layout_height="1.0px"
         android:background="#19000000" />
+
+
 </LinearLayout>
