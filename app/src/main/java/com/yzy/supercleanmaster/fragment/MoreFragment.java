@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.yzy.supercleanmaster.R;
@@ -45,24 +44,17 @@ public class MoreFragment extends BaseFragment {
 
     @OnClick(R.id.card1)
     void showWifiPassword() {
-
+        Intent intent = new Intent();
+        intent.setAction("android.net.wifi.PICK_WIFI_NETWORK");
+        intent.putExtra("extra_prefs_show_button_bar", true);
+        //intent.putExtra("extra_prefs_set_next_text", "完成");
+        //intent.putExtra("extra_prefs_set_back_text", "返回");
+        intent.putExtra("wifi_enable_next_on_connect", true);
+        startActivity(intent);
     }
 
 
     @OnClick(R.id.card2)
-    void xprivacy() {
-        ComponentName componetName = new ComponentName("com.woalk.apps.xposed.notifcount", "com.woalk.apps.xposed.notifcount.SettingsActivity");
-        try {
-            Intent intent = new Intent();
-            intent.setComponent(componetName);
-            intent.setData(Uri.parse("com.android.example://AuthActivity"));
-            startActivity(intent);
-        } catch (Exception e) {
-            Toast.makeText(mContext, "可以在这里提示用户没有找到应用程序，或者是做其他的操作！", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @OnClick(R.id.card3)
     void swipeback() {
         ComponentName componetName = new ComponentName("info.papdt.swipeback", "info.papdt.swipeback.ui.base.GlobalActivity");
         try {
@@ -71,17 +63,9 @@ public class MoreFragment extends BaseFragment {
             intent.setData(Uri.parse("com.android.example://AuthActivity"));
             startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(mContext, "可以在这里提示用户没有找到应用程序，或者是做其他的操作！", Toast.LENGTH_LONG).show();
+
         }
     }
-
-    @OnClick(R.id.card4)
-    void showAppNameOnTheToast() {
-
-    }
-
-
-
 
     @Override
     public void onDestroyView() {

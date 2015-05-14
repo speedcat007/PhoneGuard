@@ -1,6 +1,9 @@
 package com.yzy.supercleanmaster.fragment;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,12 +15,11 @@ import com.umeng.update.UmengUpdateAgent;
 import com.yzy.supercleanmaster.R;
 import com.yzy.supercleanmaster.base.BaseFragment;
 import com.yzy.supercleanmaster.model.SDCardInfo;
-import com.yzy.supercleanmaster.ui.AutoStartManageActivity;
 import com.yzy.supercleanmaster.ui.MemoryCleanActivity;
 import com.yzy.supercleanmaster.ui.RubbishCleanActivity;
+import com.yzy.supercleanmaster.ui.SafetyProtectionActivity;
 import com.yzy.supercleanmaster.ui.SoftwareManageActivity;
 import com.yzy.supercleanmaster.ui.TrafficManageActivity;
-import com.yzy.supercleanmaster.ui.VirusKillActivity;
 import com.yzy.supercleanmaster.utils.AppUtils;
 import com.yzy.supercleanmaster.utils.StorageUtil;
 import com.yzy.supercleanmaster.widget.circleprogress.ArcProgress;
@@ -157,15 +159,23 @@ public class MainFragment extends BaseFragment {
     }
 
     @OnClick(R.id.card3)
-    void AutoStartManage() {
-        startActivity(AutoStartManageActivity.class);
+    void appLock() {
+        ComponentName componetName = new ComponentName("de.Maxr1998.xposed.maxlock", "de.Maxr1998.xposed.maxlock.ui.SettingsActivity");
+        try {
+            Intent intent = new Intent();
+            intent.setComponent(componetName);
+            intent.setData(Uri.parse("com.android.example://AuthActivity"));
+            startActivity(intent);
+        } catch (Exception e) {
+
+        }
     }
 
     @OnClick(R.id.card4)
     void SoftwareManage() { startActivity(SoftwareManageActivity.class); }
 
     @OnClick(R.id.card5)
-    void VirusKill() { startActivity(VirusKillActivity.class); }
+    void VirusKill() { startActivity(SafetyProtectionActivity.class); }
 
     @OnClick(R.id.card6)
     void FlowManage() { startActivity(TrafficManageActivity.class); }

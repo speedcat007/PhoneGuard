@@ -89,6 +89,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/MyTranslucentAppTheme" />
         <activity
+            android:name=".ui.SafetyProtectionActivity"
+            android:label="@string/app_safety_protection"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme" />
+        <activity
             android:name=".ui.VirusKillActivity"
             android:label="@string/app_virus_kill"
             android:screenOrientation="portrait"

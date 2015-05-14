@@ -128,11 +128,11 @@ public class FileChooserActivity extends BaseSwipeBackActivity implements Adapte
             Drawable fileTypeIcon = null;
             if (".zip".equalsIgnoreCase(type))
             {
-                fileTypeIcon = getResources().getDrawable(R.drawable.ic_launcher);
+                fileTypeIcon = getResources().getDrawable(R.drawable.zip);
             }
             else
             {
-                fileTypeIcon = getResources().getDrawable(R.drawable.ic_launcher);
+                fileTypeIcon = getResources().getDrawable(R.drawable.apk);
             }
             FileInfo fileInfo = new FileInfo(fileTypeIcon, fileName, filePath);
             Message msg = Message.obtain();

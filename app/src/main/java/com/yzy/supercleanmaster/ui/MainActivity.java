@@ -189,6 +189,7 @@ public class MainActivity extends BaseActivity implements NavigationDrawerFragme
         switch (position) {
             case 0:
                 closeDrawer();
+                mMoreFragment = null;
                 if (mMainFragment == null) {
                     mMainFragment = new MainFragment();
                     transaction.add(R.id.container, mMainFragment);
@@ -200,11 +201,19 @@ public class MainActivity extends BaseActivity implements NavigationDrawerFragme
                 break;
             case 1:
                 closeDrawer();
+                mMainFragment = null;
+                if (mMoreFragment == null) {
+                    mMoreFragment = new MoreFragment();
+                    transaction.add(R.id.container, mMoreFragment);
+                } else {
+                    transaction.show(mMoreFragment);
+                }
                 SettingsFragment.launch(MainActivity.this);
                 break;
 
             case 2:
                 closeDrawer();
+                mMainFragment = null;
                 if (mMoreFragment == null) {
                     mMoreFragment = new MoreFragment();
                     transaction.add(R.id.container, mMoreFragment);

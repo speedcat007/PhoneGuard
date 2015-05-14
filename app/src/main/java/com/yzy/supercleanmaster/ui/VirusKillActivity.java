@@ -1,17 +1,11 @@
 package com.yzy.supercleanmaster.ui;
 
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageStats;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.RemoteException;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -27,20 +21,13 @@ import com.kanishka.virustotalv2.VirustotalPublicV2;
 import com.kanishka.virustotalv2.VirustotalPublicV2Impl;
 import com.xp.utils.FileMD5;
 import com.yzy.supercleanmaster.R;
-import com.yzy.supercleanmaster.adapter.SoftwareAdapter;
 import com.yzy.supercleanmaster.adapter.TextAdapter;
 import com.yzy.supercleanmaster.base.BaseSwipeBackActivity;
-import com.yzy.supercleanmaster.model.AppInfo;
-import com.yzy.supercleanmaster.utils.AntiVirusDao;
-import com.yzy.supercleanmaster.utils.L;
-import com.yzy.supercleanmaster.utils.Md5Encoder;
 import com.yzy.supercleanmaster.utils.T;
 import com.yzy.supercleanmaster.views.SlidingLayer;
-import com.yzy.supercleanmaster.widget.circleprogress.ArcProgress;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -50,16 +37,6 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class VirusKillActivity extends BaseSwipeBackActivity {
-
-
-    @InjectView(R.id.arc_scan)
-    ArcProgress arcScan;
-
-    @InjectView(R.id.progress)
-    TextView mProgressBarText;
-
-    @InjectView(R.id.scan_info)
-    TextView scanInfo;
 
     @InjectView(R.id.file_edit)
     EditText fileEdit;
@@ -76,13 +53,11 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
     @InjectView(R.id.slidingLayer)
     SlidingLayer slidingLayer;
 
-    SoftwareAdapter VirusAppAdapter;
-    List<AppInfo> appinfos = new ArrayList<AppInfo>();
+
 
     TextAdapter textAdapter;
     List<String> textList = new ArrayList<String>();
 
-    private AntiVirusDao dao;
 
     AsyncTask<Void, Integer, List<PackageInfo>> task;
 
@@ -100,12 +75,6 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
             switch (msg.what)
             {
                 default:
-                    PackageInfo packageInfo = (PackageInfo)msg.obj;
-                    scanInfo.setText(packageInfo.applicationInfo.loadLabel(getPackageManager()));
-                    break;
-                case VIRUS_SCAN_RESULT:
-                    List<PackageInfo> packageInfos = (List<PackageInfo>)msg.obj;
-                    updateVirusScanResult(packageInfos);
                     break;
                 case URL_SCAN_RESULT:
                     FileScanReport[] reports = (FileScanReport[])msg.obj;
@@ -125,11 +94,8 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
         setContentView(R.layout.activity_virus_kill);
         ButterKnife.inject(this);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        VirusAppAdapter = new SoftwareAdapter(mContext, appinfos);
         textAdapter = new TextAdapter(mContext, textList);
-        listview.setAdapter(VirusAppAdapter);
-        dao = new AntiVirusDao(this);
-        virusScan();
+        listview.setAdapter(textAdapter);
         slidingLayer.setSlidingEnabled(false);
     }
 
@@ -141,76 +107,9 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
         startActivityForResult(intent, FILE_CHOOSER);
     }
 
-    @OnClick({R.id.arc_scan})
-    void virusScan()
-    {
-        listview.setAdapter(VirusAppAdapter);
-        task = new AsyncTask<Void, Integer, List<PackageInfo>>()
-        {
-            private int mAppCount = 0;
-
-            @Override
-            protected List<PackageInfo> doInBackground(Void... params) {
-                List<PackageInfo> virusPackInfos = new ArrayList<PackageInfo>();
-                PackageManager pm = mContext.getPackageManager();
-                List<PackageInfo> packInfos = pm.getInstalledPackages(PackageManager.GET_SIGNATURES);
-                publishProgress(0, packInfos.size());
-
-                for (PackageInfo packInfo : packInfos)
-                {
-                    publishProgress(++mAppCount, packInfos.size());
-                    String md5 = Md5Encoder.encode(packInfo.signatures[0].toCharsString());
-                    String result = dao.getVirusInfo(md5);
-                    Message msg = Message.obtain();
-                    msg.what = SCAN_INFO;
-                    msg.obj = packInfo;
-                    handler.sendMessage(msg);
-                    if (result != null) {
-                        virusPackInfos.add(packInfo);
-                    }
-                }
-                return virusPackInfos;
-            }
-
-            @Override
-            protected void onProgressUpdate(Integer... values) {
-                try {
-                    final double progress = (values[0] / (double) values[1] * 100);
-                    arcScan.setProgress((int) progress);
-                    mProgressBarText.setText(getString(R.string.scanning_m_of_n, values[0], values[1]));
-                } catch (Exception e) {
-                    L.e(e.getMessage());
-                }
-            }
-
-            @Override
-            protected void onPreExecute() {
-                try {
-                    arcScan.setProgress(0);
-                    mProgressBarText.setText(R.string.scanning);
-                } catch (Exception e) {
-                    L.e(e.getMessage());
-                }
-                super.onPreExecute();
-            }
-
-            @Override
-            protected void onPostExecute(List<PackageInfo> result) {
-                super.onPostExecute(result);
-                Message msg = Message.obtain();
-                msg.what = VIRUS_SCAN_RESULT;
-                msg.obj = result;
-                handler.sendMessage(msg);
-            }
-
-        };
-        task.execute();
-    }
-
     @OnClick({R.id.file_btn})
     void fileScan()
     {
-        listview.setAdapter(textAdapter);
         setTitle("文件扫描");
         topText.setText("以下是此次文件扫描的结果");
         textList.clear();
@@ -249,7 +148,6 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
     @OnClick(R.id.url_btn)
     void urlScan()
     {
-        listview.setAdapter(textAdapter);
         setTitle("URL扫描");
         topText.setText("以下是此次URL扫描的结果");
         textList.clear();
@@ -282,81 +180,6 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
         }.execute();
     }
 
-    private void updateVirusScanResult(List<PackageInfo> packInfos)
-    {
-
-        if(packInfos.size() == 0)
-        {
-            T.showShort(mContext, "扫面完成没有发现病毒");
-        }
-        else
-        {
-            appinfos.clear();
-            slidingLayer.openLayer(true);
-            PackageManager pm = mContext.getPackageManager();
-            for (PackageInfo packInfo : packInfos)
-            {
-                final AppInfo appInfo = new AppInfo();
-                Drawable appIcon = packInfo.applicationInfo.loadIcon(pm);
-                appInfo.setAppIcon(appIcon);
-
-                int flags = packInfo.applicationInfo.flags;
-
-                int uid = packInfo.applicationInfo.uid;
-
-                appInfo.setUid(uid);
-
-                if ((flags & ApplicationInfo.FLAG_SYSTEM) != 0)
-                {
-                    appInfo.setUserApp(false);//系统应用
-                }
-                else
-                {
-                    appInfo.setUserApp(true);//用户应用
-                }
-                if ((flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0)
-                {
-                    appInfo.setInRom(false);
-                }
-                else
-                {
-                    appInfo.setInRom(true);
-                }
-                String appName = packInfo.applicationInfo.loadLabel(pm).toString();
-                appInfo.setAppName(appName);
-                String packname = packInfo.packageName;
-                appInfo.setPackname(packname);
-                String version = packInfo.versionName;
-                appInfo.setVersion(version);
-                try
-                {
-                    Method mGetPackageSizeInfoMethod = mContext.getPackageManager().getClass().getMethod(
-                            "getPackageSizeInfo", String.class, IPackageStatsObserver.class);
-
-                    mGetPackageSizeInfoMethod.invoke(mContext.getPackageManager(), new Object[]{
-                            packname,
-                            new IPackageStatsObserver.Stub() {
-                                @Override
-                                public void onGetStatsCompleted(PackageStats pStats, boolean succeeded) throws RemoteException {
-                                    synchronized (appInfo) {
-                                        appInfo.setPkgSize(pStats.cacheSize + pStats.codeSize + pStats.dataSize);
-
-                                    }
-                                }
-                            }
-                    });
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-                appinfos.add(appInfo);
-                VirusAppAdapter.notifyDataSetChanged();
-            }
-            T.showShort(mContext, "扫面完成发现病毒");
-        }
-        arcScan.setBottomText("重新扫描");
-    }
     private void updateFileScanResult(FileScanReport report)
     {
         textList.clear();
@@ -419,7 +242,7 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
             if (slidingLayer.isOpened())
             {
-                setTitle("病毒查杀");
+                setTitle("在线查杀");
                 slidingLayer.closeLayer(true);
                 return true;
             }
@@ -437,7 +260,7 @@ public class VirusKillActivity extends BaseSwipeBackActivity {
         if (item.getItemId() == android.R.id.home) {
             if (slidingLayer.isOpened())
             {
-                setTitle("病毒查杀");
+                setTitle("在线查杀");
                 this.slidingLayer.closeLayer(true);
                 return true;
             }

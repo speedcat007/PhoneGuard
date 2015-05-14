@@ -22,8 +22,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                card:card_image="@drawable/card_icon_speedup"
-                card:card_name="显示WIFI密码" />
+                card:card_image="@drawable/card_icon_wifi"
+                card:card_name="WIFI密码" />
         </RelativeLayout>
 
         <View
@@ -41,8 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                card:card_image="@drawable/card_icon_trash"
-                card:card_name="通知计数" />
+                card:card_image="@drawable/card_icon_swipeback"
+                card:card_name="滑动返回" />
         </RelativeLayout>
 
         <View
@@ -51,6 +51,7 @@
             android:background="#19000000" />
 
         <RelativeLayout
+            android:visibility="invisible"
             android:id="@+id/card3"
             android:layout_width="0.0dip"
             android:layout_height="fill_parent"
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 card:card_image="@drawable/card_icon_speedup"
-                card:card_name="SwipeBack" />
+                card:card_name="滑动返回" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -69,70 +70,5 @@
         android:layout_width="fill_parent"
         android:layout_height="1.0px"
         android:background="#19000000" />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0.0dip"
-        android:layout_weight="1.0"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:id="@+id/card4"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0">
-
-            <com.yzy.supercleanmaster.views.ItemCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                card:card_image="@drawable/card_icon_speedup"
-                card:card_name="Toast" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="1.0px"
-            android:layout_height="fill_parent"
-            android:background="#19000000" />
-
-        <RelativeLayout
-            android:visibility="invisible"
-            android:id="@+id/card5"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0">
-
-            <com.yzy.supercleanmaster.views.ItemCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                card:card_image="@drawable/card_icon_trash"
-                card:card_name="Toast" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="1.0px"
-            android:layout_height="fill_parent"
-            android:background="#19000000" />
-
-        <RelativeLayout
-            android:visibility="invisible"
-            android:id="@+id/card6"
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0">
-
-            <com.yzy.supercleanmaster.views.ItemCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                card:card_image="@drawable/card_icon_speedup"
-                card:card_name="SwipeBack" />
-        </RelativeLayout>
-    </LinearLayout>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1.0px"
-        android:background="#19000000" />
-
 
 </LinearLayout>
