@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/gray_drawable"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1.4">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="200.0dip"
+                android:layout_centerInParent="true">
+
+                <com.yzy.supercleanmaster.widget.circleprogress.ArcProgress
+                    android:id="@+id/arc_scan"
+                    android:layout_width="180.0dip"
+                    android:layout_height="180.0dip"
+                    custom:arc_bottom_text="扫描中"
+                    custom:arc_bottom_text_size="18.0dip"
+                    custom:arc_progress="10"
+                    custom:arc_stroke_width="8.0dip"
+                    custom:arc_text_color="#ffffffff"
+                    custom:arc_text_size="32.0dip" />
+
+                <TextView
+                    android:id="@+id/progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="55.0dip"
+                    android:text="20/30"
+                    android:textColor="@color/white"
+                    android:textSize="12.0dip" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#ff3762ad">
+
+                <TextView
+                    android:id="@+id/scan_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5.0dip"
+                    android:padding="5.0dip"
+                    android:text="com.xp.securityguard"
+                    android:textColor="#ffe2e2e2" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1">
+            <include layout="@layout/include_safety_card" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.yzy.supercleanmaster.views.SlidingLayer
+        android:id="@+id/slidingLayer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        custom:changeStateOnTap="false"
+        custom:stickTo="bottom">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff6f6f6"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/topText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_right"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginRight="@dimen/margin_right"
+                android:layout_marginTop="@dimen/margin_right"
+                android:text="以下是此次查杀发现的病毒"
+                android:textColor="#ff787878" />
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:clipToPadding="false"
+                android:divider="@null"
+                android:dividerHeight="4.0dip"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="true"
+                android:fitsSystemWindows="true"
+                android:focusable="true"
+                android:listSelector="@android:color/transparent"
+                android:padding="12.0dip"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </com.yzy.supercleanmaster.views.SlidingLayer>
+</RelativeLayout>
